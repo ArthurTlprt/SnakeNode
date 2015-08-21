@@ -27,7 +27,7 @@ function Snake(width, height, keyDirection)
         this.tail = new Array( {x : 0, y : 0} );
         this.tail[0].x = this.getRandomArbitrary(0,this.width);
         this.tail[0].y = this.getRandomArbitrary(0, this.height);
-        console.log(this.tail[0].x);
+        //console.log(this.tail[0].x);
     };
 
     this.isDead = function(poop)
@@ -51,7 +51,7 @@ function Snake(width, height, keyDirection)
     this.funct = function(e) 
     {
         this.key = e.keyCode;
-        console.log("getDirection, this.key"+this.key);
+        //console.log("getDirection, this.key"+this.key);
     }
 
     this.getDirection = function()
@@ -77,7 +77,7 @@ function Snake(width, height, keyDirection)
         
         this.ondulation();
         //bouge dans la direction
-        console.log("move "+this.key);
+        //console.log("move "+this.key);
         switch (this.key) {
             case this.keyDirection.left:
 
@@ -85,7 +85,7 @@ function Snake(width, height, keyDirection)
                 this.tail[0].x -= 1;
                 //bouge tout le corps
                 //ondulation();
-                console.log("x" + this.tail[0].x);
+                //console.log("x" + this.tail[0].x);
             break;
 
             case this.keyDirection.up:
@@ -96,7 +96,7 @@ function Snake(width, height, keyDirection)
                 //bouge tout le corps
                 //ondulation();
 
-                console.log("y" + this.tail[0].y);
+                //console.log("y" + this.tail[0].y);
             break;
 
             case this.keyDirection.right:
@@ -104,7 +104,7 @@ function Snake(width, height, keyDirection)
                 this.tail[0].x += 1;
                 //bouge tout le corps
                 //ondulation();
-                console.log("x" + this.tail[0].x);
+                //console.log("x" + this.tail[0].x);
             break;
 
             case this.keyDirection.down:
@@ -112,7 +112,7 @@ function Snake(width, height, keyDirection)
                 this.tail[0].y += 1;
                 //bouge tout le corps
                 //ondulation();
-                console.log("y" + this.tail[0].y);
+                //console.log("y" + this.tail[0].y);
             break;
             }
 

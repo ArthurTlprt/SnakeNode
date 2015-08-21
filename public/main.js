@@ -104,6 +104,7 @@ window.onload = function()
             setTimeout(play, myLayer.interval(mySnake.tail.length));
         }
         else{
+            //modify it
             context.clearRect(0,0,canvas.width,canvas.height);    //je réinitialise le canvas
             gameOver();
         }
