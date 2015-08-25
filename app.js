@@ -9,7 +9,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var app = express();
 
 var server = require('http').Server(app);
-var io = require('socket.io')(server);
+var io = require('socket.io').listen(server);
 //server.listen(8080);
 /* On utilise les sessions */
 app.use(session({secret: 'todotopsecret'}))
@@ -26,13 +26,6 @@ app.use(session({secret: 'todotopsecret'}))
     next();
 });
 
-io.on('connection', function (socket) {
-    socket.emit('news', { hello: 'world' });
-    socket.on('my other event', function (data) {
-      console.log(data);
-    });
-  
-  });
 
 app.get('/index', function(req, res) {
   res.render('index', { title: 'Node', message: 'SNAKE POWERED BY NODE.JS'});
@@ -52,6 +45,17 @@ app.get('/index', function(req, res) {
 
 .get('/home', function(req, res) {
   res.render('home', {n1: req.session.list[0], n2: req.session.list[1]});
+
+  io.sockets.on('connection', function (socket) {
+    socket.on('newClient',function(client){
+      console.log(client + ' est connecté !');
+      socket.set('pseudo', client);
+      socket.get('pseudo', function(error, pseudo){
+        socket.broadcast.emit('message', pseudo);
+      })
+    });
+  });
+  
 })
 
 .use(function(req, res, next){

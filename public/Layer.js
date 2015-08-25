@@ -25,7 +25,7 @@ function Layer(width, height, size, space, color, head, straw)
     {
         n-=1;
         var time = this.timeMax * Math.exp(-0.5*n) + this.timeMin;
-        console.log("interval = "+time);
+        //console.log("interval = "+time);
         return time;
     }
 

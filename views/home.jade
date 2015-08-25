@@ -4,11 +4,11 @@ html
     meta(charset='UTF-8')
     title Node
     script(src='/socket.io/node_modules/socket.io-client/socket.io.js')
-    script(src='socket.js')    
     script(src='Snake.js')
     script(src='Layer.js')
     script(src='main.js')
     link(rel='stylesheet', href='./style.css')
   body
+    script(src='socket.js')    
     p #{n1} wants to eat #{n2}
     canvas(id='mon_canvas', width='1350', height='630') Please update your navigator.

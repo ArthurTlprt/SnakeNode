@@ -1,5 +1,7 @@
 var socket = io.connect('http://localhost:8080');
-  socket.on('news', function (data) {
-    console.log(data);
-    socket.emit('my other event', { my: 'data' });
-  });
+console.log("hi there, bitch");
+var client = prompt('rentrez votre pseudo:');
+socket.emit('newClient', client);
+socket.on('message', function(message){
+	alert('hi ' + message);
+});
