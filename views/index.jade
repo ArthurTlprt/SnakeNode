@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    title!= title
+    link(rel='stylesheet', href='./style.css')
+  body
+    h1 Hello #{message}
+    form(action='/index/add/', method='post')
+      label(for='headN') Comment s&apos;appelle le serpent?
+      input(type='text', name='headN')
+      label(for='strawN') Comment s&apos;appelle la proie?
+      input(type='text', name='strawN')
+      input(type='submit')
+  

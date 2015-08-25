@@ -1,6 +1,5 @@
 var express = require('express');
 
-var haml = require('hamljs');
 var fs = require('fs');
 
 var session = require('cookie-session'); // Charge le middleware de sessions
@@ -12,29 +11,31 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 //server.listen(8080);
-
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-});
-
 /* On utilise les sessions */
 app.use(session({secret: 'todotopsecret'}))
+.set('view engine', 'jade')
 
 .use(express.static((__dirname, 'public')))
+
+
 
 .use(function(req, res, next){
     if (typeof(req.session.list) == 'undefined') {
         req.session.list = [];
     }
     next();
-})
+});
 
-.get('/index', function(req, res) {
-  var hamlView = fs.readFileSync('index.haml', 'utf8');
-  res.end( haml.render(hamlView, {locals: ''}) );
+io.on('connection', function (socket) {
+    socket.emit('news', { hello: 'world' });
+    socket.on('my other event', function (data) {
+      console.log(data);
+    });
+  
+  });
+
+app.get('/index', function(req, res) {
+  res.render('index', { title: 'Node', message: 'SNAKE POWERED BY NODE.JS'});
 })
 
 .post('/index/add', urlencodedParser, function(req, res) {
@@ -50,8 +51,7 @@ app.use(session({secret: 'todotopsecret'}))
 })
 
 .get('/home', function(req, res) {
-  var hamlView = fs.readFileSync('home.haml', 'utf8');
-  res.end( haml.render(hamlView, {locals: req.session.list}) );
+  res.render('home', {n1: req.session.list[0], n2: req.session.list[1]});
 })
 
 .use(function(req, res, next){

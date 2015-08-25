@@ -1,0 +1,11 @@
+{
+    "name": "snakeWithNode",
+    "version": "0.1.0",
+    "dependencies": {
+    	"express":"4.13.1",
+        "body-parser": "1.10.2",
+        "fs":"0.0.2",
+       	"socket.io":"1.3.6",
+       	"jade":"1.11.0"
+    }
+}
